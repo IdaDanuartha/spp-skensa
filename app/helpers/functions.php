@@ -20,6 +20,11 @@ function component($component, $data = []) {
     require_once "../app/views/components/$component.php";
 }
 
+// Fungsi asset adalah fungsi untuk memanggil file-file asset di public
+function asset($asset) {
+    return BASE_URL . "/assets/$asset";
+}
+
 // Fungsi rupiah adalah fungsi untuk melakukan format angka ke format rupiah
 function rupiah($num) {
     return number_format($num, 0, ',', '.');
