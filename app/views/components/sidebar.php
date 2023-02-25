@@ -23,34 +23,40 @@
 <hr class="sidebar-divider d-none d-md-block">
 
 
-<!-- Heading -->
-<div class="sidebar-heading">
-    Administrator
-</div>
-
-<!-- Nav Item - Pages Collapse Menu -->
-<li class="nav-item">
-    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
-        aria-expanded="true" aria-controls="collapseTwo">
-        <i class="fas fa-fw fa-database"></i>
-        <span>Master Data</span>
-    </a>
-    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-        <div class="bg-white py-2 collapse-inner rounded">
-            <a class="collapse-item <?= activeURL('/kelas') ?>" href="<?= BASE_URL ?>/kelas">Data Kelas</a>
-            <a class="collapse-item <?= activeURL('/siswa') ?>" href="<?= BASE_URL ?>/siswa">Data Siswa</a>
-            <a class="collapse-item <?= activeURL('/petugas') ?>" href="<?= BASE_URL ?>/siswa">Data Petugas</a>
-            <a class="collapse-item <?= activeURL('/pembayaran') ?>" href="<?= BASE_URL ?>/siswa">Data Pembayaran</a>
-        </div>
+<?php if($_SESSION['user']['role'] !== 'siswa') : ?>
+    <!-- Heading -->
+    <div class="sidebar-heading">
+        Administrator
     </div>
-</li>
 
-<!-- Nav Item - Entri Transaksi -->
-<li class="nav-item <?= activeURL('/transaksi') ?>">
-    <a class="nav-link" href="index.html">
-        <i class="fas fa-fw fa-money-bill-alt"></i>
-        <span>Entri Transaksi</span></a>
-</li>
+    <!-- Nav Item - Pages Collapse Menu -->
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
+            aria-expanded="true" aria-controls="collapseTwo">
+            <i class="fas fa-fw fa-database"></i>
+            <span>Master Data</span>
+        </a>
+        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <a class="collapse-item <?= activeURL('/kelas') ?>" href="<?= BASE_URL ?>/kelas">Data Kelas</a>
+                <?php if($_SESSION['user']['role'] === 'admin') : ?>
+                    <a class="collapse-item <?= activeURL('/siswa') ?>" href="<?= BASE_URL ?>/siswa">Data Siswa</a>
+                    <a class="collapse-item <?= activeURL('/petugas') ?>" href="<?= BASE_URL ?>/siswa">Data Petugas</a>
+                    <a class="collapse-item <?= activeURL('/pembayaran') ?>" href="<?= BASE_URL ?>/siswa">Data Pembayaran</a>
+                <?php endif; ?>
+            </div>
+        </div>
+    </li>
+<?php endif; ?>
+
+<?php if($_SESSION['user']['role'] !== 'siswa') : ?>
+    <!-- Nav Item - Entri Transaksi -->
+    <li class="nav-item <?= activeURL('/transaksi') ?>">
+        <a class="nav-link" href="index.html">
+            <i class="fas fa-fw fa-money-bill-alt"></i>
+            <span>Entri Transaksi</span></a>
+    </li>
+<?php endif; ?>
 
 <!-- Nav Item - Histori Pembayaran -->
 <li class="nav-item <?= activeURL('/transaksi/history') ?>">
@@ -59,12 +65,14 @@
         <span>Histori Pembayaran</span></a>
 </li>
 
-<!-- Nav Item - Generate Laporan -->
-<li class="nav-item <?= activeURL('/laporan') ?>">
-    <a class="nav-link" href="index.html">
-        <i class="fas fa-fw fa-file-alt"></i>
-        <span>Generate Laporan</span></a>
-</li>
+<?php if($_SESSION['user']['role'] === 'admin') : ?>
+    <!-- Nav Item - Laporan -->
+    <li class="nav-item <?= activeURL('/laporan') ?>">
+        <a class="nav-link" href="index.html">
+            <i class="fas fa-fw fa-file-alt"></i>
+            <span>Laporan</span></a>
+    </li>
+<?php endif; ?>
 
 <!-- Divider -->
 <hr class="sidebar-divider d-none d-md-block">

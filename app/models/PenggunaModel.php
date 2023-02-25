@@ -37,6 +37,7 @@ class PenggunaModel {
         
         if(password_verify($data['password'], $pengguna['password'])) {
             $_SESSION['user'] = $siswa ? $siswa : $pengguna;
+            return true;
         } else {
             return false;
         }
