@@ -10,6 +10,16 @@ function redirect($path) {
     header('Location: ' . BASE_URL . "/$path"); exit;
 }
 
+// Fungsi route adalah fungsi untuk melakukan request pada route tertentu
+function route($path) {
+    return BASE_URL . "/$path";
+}
+
+// Fungsi activeURL adalah fungsi untuk melakukan pengecekan apakah url saat ini sama dengan url yang diakses user
+function activeURL($url) {
+    return CURRENT_URL === BASE_URL . $url ? 'active' : '';
+}
+
 // Fungsi view adalah fungsi untuk memanggil sebuah view
 function view($view, $data = []) {
     require_once "../app/views/$view.php";
