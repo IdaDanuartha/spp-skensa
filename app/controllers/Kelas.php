@@ -25,14 +25,19 @@ class Kelas extends Controller {
     public function store()
     {
         if(!$_POST) return redirect('kelas');
-
-        if($this->model('KelasModel')->store($_POST) > 0) {
-            Flasher::setFlash("success", "Data kelas berhasil ditambahkan");
-            redirect("kelas");
-        } else {
-            Flasher::setFlash("danger", "Data kelas gagal ditambahkan");
+        
+        if($this->model('KelasModel')->findKelasByNama($_POST['nama'])) {
+            Flasher::setFlash("danger", 'Kelas <strong>"' . $_POST['nama'] . '"</strong> sudah ada');
             redirect("kelas/create");
-        }
+        } else {
+            if($this->model('KelasModel')->store($_POST) > 0) {
+                Flasher::setFlash("success", "Data kelas berhasil ditambahkan");
+                redirect("kelas");
+            } else {
+                Flasher::setFlash("danger", "Data kelas gagal ditambahkan");
+                redirect("kelas/create");
+            }
+        }      
     }
 
     public function detail($id)

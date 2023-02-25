@@ -20,6 +20,13 @@ class KelasModel {
                                 ORDER BY kelas.id DESC")->all();
     }
 
+    public function findKelasByNama($nama)
+    {
+        return $this->db->query("SELECT * FROM kelas WHERE nama=:nama")
+                        ->bind('nama', $nama)
+                        ->first();
+    }
+
     public function store($data)
     {
         try {
