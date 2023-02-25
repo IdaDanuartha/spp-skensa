@@ -1,6 +1,11 @@
 <?php
 
 class Auth extends Controller {
+    public function __construct()
+    {
+        // Middleware::onlyNotLoggedIn();
+    }
+
     public function index()
     {
         redirect('auth/login');
