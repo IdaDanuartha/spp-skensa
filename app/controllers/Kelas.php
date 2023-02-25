@@ -70,4 +70,17 @@ class Kelas extends Controller {
             redirect("kelas/edit/$_POST[id]");
         }
     }
+
+    public function destroy()
+    {
+        if(!$_POST) return redirect('kelas');
+
+        if($this->model('KelasModel')->destroy($_POST['id']) > 0) {
+            Flasher::setFlash("success", "Data kelas berhasil dihapus");
+            redirect("kelas");
+        } else {
+            Flasher::setFlash("danger", "Data kelas gagal dihapus");
+            redirect("kelas");
+        }
+    }
 }

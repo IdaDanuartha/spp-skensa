@@ -1,6 +1,6 @@
 $(document).ready(function() {
 
-    $('.delete-kelas-btn').on('click', function() {
+    $('.detail-kelas-btn').on('click', function() {
         const id = $(this).closest('.kelas_data').find('.kelas_id').val()
         console.log(id)
         $.ajax({
@@ -8,9 +8,9 @@ $(document).ready(function() {
             method: 'POST',
             success: (response) => {
                 const res = JSON.parse(response)
-                console.log(res)
+
                 $(".kelas_id").val(res.id)
-                $(".nama_kelas").html(`"${res.nama}"`)
+                $(".nama_kelas").html(`"${res.nama}"`)                  
             }
         })
     })

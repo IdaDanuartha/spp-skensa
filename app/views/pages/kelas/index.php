@@ -39,7 +39,7 @@
                                     <a href="<?= route('kelas/edit/' . $val['id']) ?>" class="btn btn-circle btn-warning btn-sm mr-2">
                                         <i class="fas fa-pencil-alt"></i>
                                     </a>
-                                    <button data-toggle="modal" data-target="#deleteKelasModal" class="btn btn-circle btn-danger btn-sm delete-kelas-btn">
+                                    <button data-toggle="modal" data-target="#deleteKelasModal" class="btn btn-circle btn-danger btn-sm detail-kelas-btn">
                                         <i class="fas fa-trash"></i>
                                     </button>
                                 </td>
@@ -52,13 +52,39 @@
     </div>
 </div>
 
+
+<!-- Detail Kelas -->
+<div class="modal fade" id="detailKelasModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body text-center py-4">
+                <h5 class="font-weight-bold mb-3">Detail Kelas</h5>
+                <form class="px-5">
+                    <div class="mb-3">
+                        <label for="">Nama Kelas</label>
+                        <input type="text" class="input_kelas form-control">
+                    </div>
+                    <div class="mb-3">
+                        <label for="">Nama Kelas</label>
+                        <input type="text" class="input_kelas form-control">
+                    </div>
+                    <div class="d-flex justify-content-end">
+                        <button class="btn btn-secondary mr-3" data-dismiss="modal">Kembali</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Delete Kelas -->
 <div class="modal fade" id="deleteKelasModal">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-body text-center py-4">
                 <h5 class="font-weight-bold mb-3">Hapus Kelas</h5>
-                <form action="" class="px-5">
-                    <input type="hidden" class="data_kelas_id">
+                <form action="<?= route('kelas/destroy') ?>" method="post" class="px-5">
+                    <input type="hidden" class="data_kelas_id" name="id" value="9">
                     <p>Apakah anda yakin mau menghapus data kelas <span class="text-danger font-weight-bold nama_kelas">""</span>? Proses ini tidak dapat dikembalikan</p>
                     <div class="d-flex justify-content-center">
                         <button class="btn btn-secondary mr-3" data-dismiss="modal">Batal</button>
