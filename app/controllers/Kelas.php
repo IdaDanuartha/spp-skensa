@@ -1,9 +1,14 @@
 <?php
 
 class Kelas extends Controller {
+    public function __construct()
+    {
+        if(Middleware::checkRole('siswa')) redirect('dashboard');
+    }
+
     public function index()
     {         
-        Middleware::onlyLoggedIn();   
+        // Middleware::onlyLoggedIn();   
         $data = [
             "title" => "Data Kelas",
             "view" => "pages/kelas/index",
@@ -15,7 +20,7 @@ class Kelas extends Controller {
 
     public function create()
     {
-        Middleware::onlyLoggedIn();
+        // Middleware::onlyLoggedIn();
         $data = [
             "title" => "Tambah Kelas",
             "view" => "pages/kelas/create",
@@ -44,14 +49,14 @@ class Kelas extends Controller {
 
     public function detail($id)
     {
-        Middleware::onlyLoggedIn();    
+        // Middleware::onlyLoggedIn();    
        
         echo json_encode($this->model('KelasModel')->findKelas($id));
     }
 
     public function edit($id)
     {
-        Middleware::onlyLoggedIn();
+        // Middleware::onlyLoggedIn();
         $data = [
             "title" => "Edit Kelas",
             "view" => "pages/kelas/edit",

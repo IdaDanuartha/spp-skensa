@@ -1,6 +1,11 @@
 <?php
 
 class Pembayaran extends Controller {
+    public function __construct()
+    {
+        if(!Middleware::checkRole('admin')) redirect('dashboard');
+    }
+
     public function index()
     {         
         Middleware::onlyLoggedIn();   

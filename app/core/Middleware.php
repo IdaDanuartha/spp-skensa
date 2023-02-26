@@ -11,21 +11,9 @@ class Middleware {
         if(isset($_SESSION['user'])) redirect('dashboard');
     }
 
-    public static function onlyAdmin()
+    public static function checkRole($role)
     {
         Middleware::onlyLoggedIn();
-        if($_SESSION['user']['role'] !== 'admin') redirect('dashboard');
-    }
-
-    public static function onlyPetugas()
-    {
-        Middleware::onlyLoggedIn();
-        if($_SESSION['user']['role'] !== 'petugas') redirect('dashboard');
-    }
-
-    public static function onlySiswa()
-    {
-        Middleware::onlyLoggedIn();
-        if($_SESSION['user']['role'] !== 'siswa') redirect('dashboard');
+        return $_SESSION['user']['role'] === $role;
     }
 }
