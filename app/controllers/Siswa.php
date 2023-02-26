@@ -68,7 +68,9 @@ class Siswa extends Controller {
         $data = [
             "title" => "Edit Siswa",
             "view" => "pages/siswa/edit",
-            "siswa" => $this->model('SiswaModel')->findSiswa($id)
+            "siswa" => $this->model('SiswaModel')->findSiswa($id),
+            "kelas" => $this->model('KelasModel')->getAllKelas(),
+            "pembayaran" => $this->model('PembayaranModel')->getAllPembayaran(),
         ];
        
         return $this->view('layouts/dashboard', $data);
