@@ -24,6 +24,8 @@ class Siswa extends Controller {
         $data = [
             "title" => "Tambah Siswa",
             "view" => "pages/siswa/create",
+            "kelas" => $this->model('KelasModel')->getAllKelas(),
+            "pembayaran" => $this->model('PembayaranModel')->getAllPembayaran(),
         ];
        
         return $this->view('layouts/dashboard', $data);
@@ -35,6 +37,12 @@ class Siswa extends Controller {
         
         if($this->model('SiswaModel')->findSiswaByColumn($_POST['nisn'])) {
             Flasher::setFlash("danger", 'Siswa dengan NISN <strong>"' . $_POST['nisn'] . '"</strong> sudah ada');
+            redirect("siswa/create");
+        } else if($this->model('SiswaModel')->findSiswaByColumn($_POST['nis'])) {
+            Flasher::setFlash("danger", 'Siswa dengan NIS <strong>"' . $_POST['nis'] . '"</strong> sudah ada');
+            redirect("siswa/create");
+        } else if($this->model('SiswaModel')->findSiswaByColumn($_POST['nama'])) {
+            Flasher::setFlash("danger", 'Siswa dengan nama <strong>"' . $_POST['nama'] . '"</strong> sudah ada');
             redirect("siswa/create");
         } else {
             if($this->model('SiswaModel')->store($_POST) > 0) {

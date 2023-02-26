@@ -5,23 +5,6 @@
  */
 
 class SiswaModel extends Model {
-    public function dataSiswa($data)
-    {
-        $pengguna_id = $this->getLatestPengguna()['id'];
-        $siswa = [
-            "nisn" => $data['nisn'],
-            "nis" => $data['nis'],
-            "nama" => $data['nama'],
-            "alamat" => $data['alamat'],
-            "telepon" => $data['telepon'],
-            "kelas_id" => $data['kelas_id'],
-            "pengguna_id" => $pengguna_id,
-            "pembayaran_id" => $data['pembayaran_id'],
-        ];
-
-        return $siswa;
-    }
-    
     public function getAllSiswa()
     {
         return $this->db->query("SELECT siswa.*, kelas.nama AS kelas, pembayaran.tahun_ajaran AS tahun_ajaran FROM siswa
@@ -54,15 +37,44 @@ class SiswaModel extends Model {
                         ->first();
     }
 
+    public function storeAccount($data)
+    {
+        $this->db->beginTransaction();
+        try {
+            $hash = password_hash($data['password'], PASSWORD_BCRYPT);
+
+            $this->db->query("INSERT INTO pengguna VALUES(null, :username, :password, 'siswa')")
+                     ->binds([
+                         'username' => $data['nis'],
+                         'password' => $hash
+                     ])->execute();
+                     
+            return $this->db->commit();
+        } catch (\Exception $e) {
+            return $this->db->rollBack();
+        }
+    }
+
     public function store($data)
     {
-        try {
-            $this->db->beginTransaction();            
-
+        $this->storeAccount($data);
+        $pengguna_id = $this->getLatestPengguna()['id'];
+        
+        $this->db->beginTransaction();            
+        try {            
             $this->db->query("INSERT INTO siswa VALUES(null, :nisn, :nis, :nama, :alamat, :telepon, :kelas_id, :pengguna_id, :pembayaran_id)")
-                     ->binds($this->dataSiswa($data))
+                     ->binds([
+                        "nisn" => $data['nisn'],
+                        "nis" => $data['nis'],
+                        "nama" => $data['nama'],
+                        "alamat" => $data['alamat'],
+                        "telepon" => $data['telepon'],
+                        "kelas_id" => $data['kelas_id'],
+                        "pengguna_id" => $pengguna_id,
+                        "pembayaran_id" => $data['pembayaran_id'],
+                    ])
                      ->execute();
-                     
+
             return $this->db->commit();
         } catch (\Exception $e) {
             return $this->db->rollBack();

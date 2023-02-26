@@ -60,9 +60,7 @@ class Database {
     public function binds($params = []) {
         foreach($params as $key => $value) {
             $this->bind($key, $value);
-        }
-        $this->execute();
-
+        }        
         return $this;
     }
 
