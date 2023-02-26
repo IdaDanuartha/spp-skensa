@@ -45,9 +45,7 @@ class SiswaModel extends Model {
                  ->binds([
                     'username' => $data['nis'],
                     'password' => $hash
-                 ])->execute();
-                    
-        return $this->db->commit();
+                 ])->execute();   
     }
 
     public function findAccountSiswa($id)
@@ -71,12 +69,12 @@ class SiswaModel extends Model {
     }
 
     public function store($data)
-    {
-        $this->storeAccount($data);
-        $pengguna_id = $this->getLatestPengguna()['id'];
-        
+    {          
         $this->db->beginTransaction();            
-        try {            
+        try {
+            $this->storeAccount($data);
+            $pengguna_id = $this->getLatestPengguna()['id'];
+
             $this->db->query("INSERT INTO siswa VALUES(null, :nisn, :nis, :nama, :alamat, :telepon, :kelas_id, :pengguna_id, :pembayaran_id)")
                      ->binds([
                         "nisn" => $data['nisn'],
@@ -90,7 +88,7 @@ class SiswaModel extends Model {
                     ])->execute();
 
             return $this->db->commit();
-        } catch (\Exception $e) {
+        } catch (\Exception $e) {            
             return $this->db->rollBack();
         }
     }
