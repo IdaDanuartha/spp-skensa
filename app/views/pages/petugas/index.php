@@ -49,32 +49,12 @@
                                         <div class="modal-body p-4">
                                             <h5 class="font-weight-bold mb-3">Detail petugas</h5>            
                                             <div class="mb-3">
-                                                <label for="">NISN</label>
-                                                <input type="text" class="form-control" value="<?= $val['nisn'] ?>" readonly>
+                                                <label for="username">Username</label>
+                                                <input type="text" class="form-control" value="<?= $val['username'] ?>" readonly>
                                             </div>
                                             <div class="mb-3">
-                                                <label for="">NIS</label>
-                                                <input type="text" class="form-control" value="<?= $val['nis'] ?>" readonly>
-                                            </div>
-                                            <div class="mb-3">
-                                                <label for="">Nama petugas</label>
+                                                <label for="nama">Nama Petugas</label>
                                                 <input type="text" class="form-control" value="<?= $val['nama'] ?>" readonly>
-                                            </div>
-                                            <div class="mb-3">
-                                                <label for="">Kelas</label>
-                                                <input type="text" class="form-control" value="<?= $val['kelas'] ?>" readonly>
-                                            </div>                                            
-                                            <div class="mb-3">
-                                                <label for="">No Telepon</label>
-                                                <input type="text" class="form-control" value="<?= $val['telepon'] ?>" readonly>
-                                            </div>                                            
-                                            <div class="mb-3">
-                                                <label for="">Alamat</label>
-                                                <input type="text" class="form-control" value="<?= $val['alamat'] ?>" readonly>
-                                            </div>
-                                            <div class="mb-3">
-                                                <label for="">Tahun Ajaran</label>
-                                                <input type="text" class="form-control" value="<?= $val['tahun_ajaran'] ?>" readonly>
                                             </div>
                                             <div class="d-flex justify-content-end">
                                                 <button class="btn btn-secondary mr-3" data-dismiss="modal">Kembali</button>
@@ -89,7 +69,7 @@
                                 <div class="modal-dialog">
                                     <div class="modal-content">
                                         <div class="modal-body text-center py-4">
-                                            <h5 class="font-weight-bold mb-3">Hapus petugas</h5>
+                                            <h5 class="font-weight-bold mb-3">Hapus Petugas</h5>
                                             <form action="<?= route('petugas/destroy') ?>" method="post" class="px-5">
                                                 <input type="hidden" class="data_petugas_id" name="id" value="<?= $val['id'] ?>">
                                                 <p>Apakah anda yakin mau menghapus data petugas <span class="text-danger font-weight-bold">"<?= $val['nama'] ?>"</span>? Proses ini tidak dapat dikembalikan</p>
