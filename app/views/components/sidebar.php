@@ -41,8 +41,8 @@
                 <a class="collapse-item <?= activeURL('/kelas') ?>" href="<?= BASE_URL ?>/kelas">Data Kelas</a>
                 <?php if($_SESSION['user']['role'] === 'admin') : ?>
                     <a class="collapse-item <?= activeURL('/siswa') ?>" href="<?= BASE_URL ?>/siswa">Data Siswa</a>
-                    <a class="collapse-item <?= activeURL('/petugas') ?>" href="<?= BASE_URL ?>/siswa">Data Petugas</a>
-                    <a class="collapse-item <?= activeURL('/pembayaran') ?>" href="<?= BASE_URL ?>/siswa">Data Pembayaran</a>
+                    <a class="collapse-item <?= activeURL('/petugas') ?>" href="<?= BASE_URL ?>/petugas">Data Petugas</a>
+                    <a class="collapse-item <?= activeURL('/pembayaran') ?>" href="<?= BASE_URL ?>/pembayaran">Data Pembayaran</a>
                 <?php endif; ?>
             </div>
         </div>

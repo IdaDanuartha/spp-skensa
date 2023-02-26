@@ -5,6 +5,7 @@ class Dashboard extends Controller {
     {         
         Middleware::onlyLoggedIn();   
         $data = [
+            "title" => "Dashboard",
             "view" => "pages/dashboard/index",
             "pengguna" => $this->model("PenggunaModel")->findPenggunaByUsername("admin")
         ];

@@ -37,5 +37,5 @@ function asset($asset) {
 
 // Fungsi rupiah adalah fungsi untuk melakukan format angka ke format rupiah
 function rupiah($num) {
-    return number_format($num, 0, ',', '.');
+    return 'Rp. ' . number_format($num, 0, ',', '.');
 }

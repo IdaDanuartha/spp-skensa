@@ -4,14 +4,7 @@
  * class KelasModel
  */
 
-class KelasModel {
-    protected $db;
-
-    public function __construct()
-    {
-        $this->db = new Database;
-    }
-
+class KelasModel extends Model {
     public function getAllKelas()
     {
         return $this->db->query("SELECT kelas.*, COUNT(siswa.id) AS total_siswa FROM kelas
@@ -24,6 +17,14 @@ class KelasModel {
     {
         return $this->db->query("SELECT * FROM kelas WHERE nama=:nama")
                         ->bind('nama', $nama)
+                        ->first();
+    }
+
+    public function findKelasByNamaExceptThisId($nama, $id)
+    {
+        return $this->db->query("SELECT * FROM kelas WHERE nama=:nama AND NOT id=:id")
+                        ->bind('nama', $nama)
+                        ->bind('id', $id)
                         ->first();
     }
 
@@ -67,13 +68,13 @@ class KelasModel {
         }
     }
 
-    public function destroy($data)
+    public function destroy($id)
     {
-        try {
+        try {            
             $this->db->beginTransaction();
 
             $this->db->query("call deleteKelas(:id)")
-                     ->bind("id", $data['id'])
+                     ->bind("id", $id)
                      ->execute();
                      
             return $this->db->commit();

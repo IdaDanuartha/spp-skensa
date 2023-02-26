@@ -5,6 +5,7 @@ class Pembayaran extends Controller {
     {         
         Middleware::onlyLoggedIn();   
         $data = [
+            "title" => "Data Pembayaran",
             "view" => "pages/pembayaran/index",
             "pembayaran" => $this->model("PembayaranModel")->getAllPembayaran()
         ];
@@ -16,6 +17,7 @@ class Pembayaran extends Controller {
     {
         Middleware::onlyLoggedIn();
         $data = [
+            "title" => "Tambah Pembayaran",
             "view" => "pages/pembayaran/create",
         ];
        
@@ -51,6 +53,7 @@ class Pembayaran extends Controller {
     {
         Middleware::onlyLoggedIn();
         $data = [
+            "title" => "Edit Pembayaran",
             "view" => "pages/pembayaran/edit",
             "pembayaran" => $this->model('PembayaranModel')->findPembayaran($id)
         ];
@@ -62,13 +65,18 @@ class Pembayaran extends Controller {
     {
         if(!$_POST) return redirect('pembayaran');
 
-        if($this->model('PembayaranModel')->update($_POST) > 0) {
-            Flasher::setFlash("success", "Data pembayaran berhasil diubah");
-            redirect("pembayaran");
-        } else {
-            Flasher::setFlash("danger", "Data pembayaran gagal diubah");
+        if($this->model('PembayaranModel')->findPembayaranByTahunAjaranExceptThisId($_POST['tahun_ajaran'], $_POST['id'])) {
+            Flasher::setFlash("danger", 'Pembayaran <strong>"' . $_POST['tahun_ajaran'] . '"</strong> sudah ada');
             redirect("pembayaran/edit/$_POST[id]");
-        }
+        } else {
+            if($this->model('PembayaranModel')->update($_POST) > 0) {
+                Flasher::setFlash("success", "Data pembayaran berhasil diubah");
+                redirect("pembayaran");
+            } else {
+                Flasher::setFlash("danger", "Data pembayaran gagal diubah");
+                redirect("pembayaran/edit/$_POST[id]");
+            }
+        }     
     }
 
     public function destroy()

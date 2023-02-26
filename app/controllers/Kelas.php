@@ -5,6 +5,7 @@ class Kelas extends Controller {
     {         
         Middleware::onlyLoggedIn();   
         $data = [
+            "title" => "Data Kelas",
             "view" => "pages/kelas/index",
             "kelas" => $this->model("KelasModel")->getAllKelas()
         ];
@@ -16,6 +17,7 @@ class Kelas extends Controller {
     {
         Middleware::onlyLoggedIn();
         $data = [
+            "title" => "Tambah Kelas",
             "view" => "pages/kelas/create",
         ];
        
@@ -51,6 +53,7 @@ class Kelas extends Controller {
     {
         Middleware::onlyLoggedIn();
         $data = [
+            "title" => "Edit Kelas",
             "view" => "pages/kelas/edit",
             "kelas" => $this->model('KelasModel')->findKelas($id)
         ];
@@ -62,17 +65,22 @@ class Kelas extends Controller {
     {
         if(!$_POST) return redirect('kelas');
 
-        if($this->model('KelasModel')->update($_POST) > 0) {
-            Flasher::setFlash("success", "Data kelas berhasil diubah");
-            redirect("kelas");
-        } else {
-            Flasher::setFlash("danger", "Data kelas gagal diubah");
+        if($this->model('KelasModel')->findKelasByNamaExceptThisId($_POST['nama'], $_POST['id'])) {
+            Flasher::setFlash("danger", 'Kelas <strong>"' . $_POST['nama'] . '"</strong> sudah ada');
             redirect("kelas/edit/$_POST[id]");
+        } else {
+            if($this->model('KelasModel')->update($_POST) > 0) {
+                Flasher::setFlash("success", "Data kelas berhasil diubah");
+                redirect("kelas");
+            } else {
+                Flasher::setFlash("danger", "Data kelas gagal diubah");
+                redirect("kelas/edit/$_POST[id]");
+            }
         }
     }
 
     public function destroy()
-    {
+    {    
         if(!$_POST) return redirect('kelas');
 
         if($this->model('KelasModel')->destroy($_POST['id']) > 0) {

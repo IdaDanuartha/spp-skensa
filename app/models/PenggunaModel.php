@@ -4,13 +4,7 @@
  * class PenggunaModel
  */
 
-class PenggunaModel {
-    protected $db;
-
-    public function __construct()
-    {
-        $this->db = new Database;
-    }
+class PenggunaModel extends Model {
 
     public function findPenggunaByUsername($username)
     {
