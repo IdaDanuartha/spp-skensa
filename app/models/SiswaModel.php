@@ -106,7 +106,9 @@ class SiswaModel extends Model {
 
     public function findSiswa($id)
     {
-        return $this->db->query("SELECT * FROM siswa WHERE id=:id")
+        return $this->db->query("SELECT siswa.*, kelas.nama AS kelas FROM siswa
+                                INNER JOIN kelas ON kelas.id = siswa.kelas_id
+                                WHERE siswa.id=:id")
                         ->bind("id", $id)
                         ->first();
     }

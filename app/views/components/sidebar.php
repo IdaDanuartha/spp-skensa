@@ -19,11 +19,12 @@
         <span>Dashboard</span></a>
 </li>
 
-<!-- Divider -->
-<hr class="sidebar-divider d-none d-md-block">
 
 
 <?php if($_SESSION['user']['role'] !== 'siswa') : ?>
+    <!-- Divider -->
+    <hr class="sidebar-divider d-none d-md-block">
+    
     <!-- Heading -->
     <div class="sidebar-heading">
         Administrator
@@ -59,8 +60,8 @@
 <?php endif; ?>
 
 <!-- Nav Item - Histori Pembayaran -->
-<li class="nav-item <?= activeURL('/transaksi/history') ?>">
-    <a class="nav-link" href="<?= route('transaksi/history') ?>">
+<li class="nav-item <?= activeURL('/transaksi/histori') ?>">
+    <a class="nav-link" href="<?= route('transaksi/histori') ?>">
         <i class="fas fa-fw fa-file-archive"></i>
         <span>Histori Pembayaran</span></a>
 </li>

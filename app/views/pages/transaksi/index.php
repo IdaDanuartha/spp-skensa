@@ -24,7 +24,10 @@
                                 <td><?= $val['nama'] ?></td>
                                 <td><?= $val['kelas'] ?></td>
                                 <td>
-                                    <a href="<?= route('transaksi/create') ?>" class="btn btn-primary btn-sm">
+                                    <a href="<?= route('transaksi/detail/' . $val['id']) ?>" class="btn btn-info btn-sm">
+                                        Detail
+                                    </a>
+                                    <a href="<?= route('transaksi/create/' . $val['id']) ?>" class="btn btn-primary btn-sm">
                                         Bayar
                                     </a>
                                 </td>
