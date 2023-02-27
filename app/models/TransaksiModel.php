@@ -64,6 +64,22 @@ class TransaksiModel extends Model {
                         ->first();
     }
 
+    public function getTransaksiThisSemester($siswa_id)
+    {
+        $transaksi = [
+            "tahun_dibayar" => date('Y'),
+            "siswa_id" => $siswa_id,
+        ];
+
+        if(date('m') >= 1 && date('m') <= 6) {
+            $query = "SELECT * FROM transaksi WHERE bulan_dibayar BETWEEN 1 AND 6 AND tahun_dibayar=:tahun_dibayar AND siswa_id=:siswa_id";
+        } else {
+            $query = "SELECT * FROM transaksi WHERE bulan_dibayar BETWEEN 7 AND 12 AND tahun_dibayar=:tahun_dibayar AND siswa_id=:siswa_id";
+        }
+
+        return $this->db->query($query)->binds($transaksi)->all();
+    }
+
     public function store($data)
     {                              
         try {
