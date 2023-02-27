@@ -22,18 +22,26 @@ class KelasModel extends Model {
 
     public function findKelasByNamaExceptThisId($nama, $id)
     {
+        $kelas = [
+            'nama' => $nama,
+            'id' => $id
+        ];
+
         return $this->db->query("SELECT * FROM kelas WHERE nama=:nama AND NOT id=:id")
-                        ->bind('nama', $nama)
-                        ->bind('id', $id)
+                        ->binds($kelas)
                         ->first();
     }
 
     public function store($data)
     {
-        try {            
+        try {           
+            $kelas = [
+                'nama' => $data['nama'],
+                'kompetensi_keahlian' => $data['kompetensi_keahlian']
+            ];
+
             $this->db->query("call insertKelas(:nama, :kompetensi_keahlian)")
-                     ->bind("nama", $data['nama'])
-                     ->bind("kompetensi_keahlian", $data['kompetensi_keahlian'])
+                     ->binds($kelas)
                      ->execute();
                      
             return $this->db->commit();
@@ -51,11 +59,15 @@ class KelasModel extends Model {
 
     public function update($data)
     {
-        try {            
+        try {        
+            $kelas = [
+                'nama' => $data['nama'],
+                'kompetensi_keahlian' => $data['kompetensi_keahlian'],
+                'id' => $data['id']
+            ];
+
             $this->db->query("call updateKelas(:nama, :kompetensi_keahlian, :id)")
-                     ->bind("nama", $data['nama'])
-                     ->bind("kompetensi_keahlian", $data['kompetensi_keahlian'])
-                     ->bind("id", $data['id'])
+                     ->binds($kelas)
                      ->execute();
                      
             return $this->db->commit();

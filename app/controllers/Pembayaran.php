@@ -7,8 +7,7 @@ class Pembayaran extends Controller {
     }
 
     public function index()
-    {         
-        Middleware::onlyLoggedIn();   
+    {                
         $data = [
             "title" => "Data Pembayaran",
             "view" => "pages/pembayaran/index",
@@ -19,8 +18,7 @@ class Pembayaran extends Controller {
     }
 
     public function create()
-    {
-        Middleware::onlyLoggedIn();
+    {    
         $data = [
             "title" => "Tambah Pembayaran",
             "view" => "pages/pembayaran/create",
@@ -48,15 +46,13 @@ class Pembayaran extends Controller {
     }
 
     public function detail($id)
-    {
-        Middleware::onlyLoggedIn();    
+    {        
        
         echo json_encode($this->model('PembayaranModel')->findPembayaran($id));
     }
 
     public function edit($id)
-    {
-        Middleware::onlyLoggedIn();
+    {    
         $data = [
             "title" => "Edit Pembayaran",
             "view" => "pages/pembayaran/edit",

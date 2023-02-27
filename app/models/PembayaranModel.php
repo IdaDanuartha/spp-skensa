@@ -19,18 +19,26 @@ class PembayaranModel extends Model {
 
     public function findPembayaranByTahunAjaranExceptThisId($tahun_ajaran, $id)
     {
+        $pembayaran = [
+            'tahun_ajaran' => $tahun_ajaran,
+            'id' => $id
+        ];
+
         return $this->db->query("SELECT * FROM pembayaran WHERE tahun_ajaran=:tahun_ajaran AND NOT id=:id")
-                        ->bind('tahun_ajaran', $tahun_ajaran)
-                        ->bind('id', $id)
+                        ->binds($pembayaran)
                         ->first();
     }
 
     public function store($data)
     {
-        try {            
+        try {     
+            $pembayaran = [
+                'tahun_ajaran' => $data['tahun_ajaran'],
+                'nominal' => $data['nominal']
+            ];
+
             $this->db->query("INSERT INTO pembayaran VALUES(null, :tahun_ajaran, :nominal)")
-                     ->bind("tahun_ajaran", $data['tahun_ajaran'])
-                     ->bind("nominal", $data['nominal'])
+                     ->binds($pembayaran)
                      ->execute();
                      
             return $this->db->commit();
@@ -48,10 +56,14 @@ class PembayaranModel extends Model {
 
     public function update($data)
     {
-        try {            
+        try {        
+            $pembayaran = [
+                'tahun_ajaran' => $data['tahun_ajaran'],
+                'id' => $data['id']
+            ];
+
             $this->db->query("UPDATE pembayaran SET tahun_ajaran=:tahun_ajaran WHERE id=:id")
-                     ->bind("tahun_ajaran", $data['tahun_ajaran'])                     
-                     ->bind("id", $data['id'])
+                     ->binds($pembayaran)
                      ->execute();
                      
             return $this->db->commit();

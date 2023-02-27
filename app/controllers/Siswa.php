@@ -7,8 +7,7 @@ class Siswa extends Controller {
     }
 
     public function index()
-    {         
-        Middleware::onlyLoggedIn();   
+    {            
         $data = [
             "title" => "Data Siswa",
             "view" => "pages/siswa/index",
@@ -20,7 +19,6 @@ class Siswa extends Controller {
 
     public function create()
     {
-        Middleware::onlyLoggedIn();
         $data = [
             "title" => "Tambah Siswa",
             "view" => "pages/siswa/create",
@@ -56,15 +54,13 @@ class Siswa extends Controller {
     }
 
     public function detail($id)
-    {
-        Middleware::onlyLoggedIn();    
+    {    
        
         echo json_encode($this->model('SiswaModel')->findSiswa($id));
     }
 
     public function edit($id)
     {
-        Middleware::onlyLoggedIn();
         $data = [
             "title" => "Edit Siswa",
             "view" => "pages/siswa/edit",

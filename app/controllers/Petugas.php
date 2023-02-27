@@ -7,8 +7,7 @@ class Petugas extends Controller {
     }
 
     public function index()
-    {         
-        Middleware::onlyLoggedIn();   
+    {                    
         $data = [
             "title" => "Data Petugas",
             "view" => "pages/petugas/index",
@@ -19,8 +18,7 @@ class Petugas extends Controller {
     }
 
     public function create()
-    {
-        Middleware::onlyLoggedIn();
+    {        
         $data = [
             "title" => "Tambah Petugas",
             "view" => "pages/petugas/create",
@@ -51,15 +49,13 @@ class Petugas extends Controller {
     }
 
     public function detail($id)
-    {
-        Middleware::onlyLoggedIn();    
+    {            
        
         echo json_encode($this->model('PetugasModel')->findPetugas($id));
     }
 
     public function edit($id)
-    {
-        Middleware::onlyLoggedIn();
+    {        
         $data = [
             "title" => "Edit Petugas",
             "view" => "pages/petugas/edit",

@@ -38,11 +38,11 @@
         </a>
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
-                <a class="collapse-item <?= activeURL('/kelas') ?>" href="<?= BASE_URL ?>/kelas">Data Kelas</a>
+                <a class="collapse-item <?= activeURL('/kelas') ?>" href="<?= route('kelas') ?>">Data Kelas</a>
                 <?php if($_SESSION['user']['role'] === 'admin') : ?>
-                    <a class="collapse-item <?= activeURL('/siswa') ?>" href="<?= BASE_URL ?>/siswa">Data Siswa</a>
-                    <a class="collapse-item <?= activeURL('/petugas') ?>" href="<?= BASE_URL ?>/petugas">Data Petugas</a>
-                    <a class="collapse-item <?= activeURL('/pembayaran') ?>" href="<?= BASE_URL ?>/pembayaran">Data Pembayaran</a>
+                    <a class="collapse-item <?= activeURL('/siswa') ?>" href="<?= route('siswa') ?>">Data Siswa</a>
+                    <a class="collapse-item <?= activeURL('/petugas') ?>" href="<?= route('petugas') ?>">Data Petugas</a>
+                    <a class="collapse-item <?= activeURL('/pembayaran') ?>" href="<?= route('pembayaran') ?>">Data Pembayaran</a>
                 <?php endif; ?>
             </div>
         </div>
@@ -52,7 +52,7 @@
 <?php if($_SESSION['user']['role'] !== 'siswa') : ?>
     <!-- Nav Item - Entri Transaksi -->
     <li class="nav-item <?= activeURL('/transaksi') ?>">
-        <a class="nav-link" href="index.html">
+        <a class="nav-link" href="<?= route('transaksi') ?>">
             <i class="fas fa-fw fa-money-bill-alt"></i>
             <span>Entri Transaksi</span></a>
     </li>
@@ -60,7 +60,7 @@
 
 <!-- Nav Item - Histori Pembayaran -->
 <li class="nav-item <?= activeURL('/transaksi/history') ?>">
-    <a class="nav-link" href="index.html">
+    <a class="nav-link" href="<?= route('transaksi/history') ?>">
         <i class="fas fa-fw fa-file-archive"></i>
         <span>Histori Pembayaran</span></a>
 </li>
@@ -68,7 +68,7 @@
 <?php if($_SESSION['user']['role'] === 'admin') : ?>
     <!-- Nav Item - Laporan -->
     <li class="nav-item <?= activeURL('/laporan') ?>">
-        <a class="nav-link" href="index.html">
+        <a class="nav-link" href="<?= route('laporan') ?>">
             <i class="fas fa-fw fa-file-alt"></i>
             <span>Laporan</span></a>
     </li>
