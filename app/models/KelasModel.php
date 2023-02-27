@@ -30,9 +30,7 @@ class KelasModel extends Model {
 
     public function store($data)
     {
-        try {
-            $this->db->beginTransaction();
-
+        try {            
             $this->db->query("call insertKelas(:nama, :kompetensi_keahlian)")
                      ->bind("nama", $data['nama'])
                      ->bind("kompetensi_keahlian", $data['kompetensi_keahlian'])
@@ -53,9 +51,7 @@ class KelasModel extends Model {
 
     public function update($data)
     {
-        try {
-            $this->db->beginTransaction();
-
+        try {            
             $this->db->query("call updateKelas(:nama, :kompetensi_keahlian, :id)")
                      ->bind("nama", $data['nama'])
                      ->bind("kompetensi_keahlian", $data['kompetensi_keahlian'])
@@ -70,9 +66,7 @@ class KelasModel extends Model {
 
     public function destroy($id)
     {
-        try {            
-            $this->db->beginTransaction();
-
+        try {                        
             $this->db->query("call deleteKelas(:id)")
                      ->bind("id", $id)
                      ->execute();

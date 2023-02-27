@@ -27,9 +27,7 @@ class PembayaranModel extends Model {
 
     public function store($data)
     {
-        try {
-            $this->db->beginTransaction();
-
+        try {            
             $this->db->query("INSERT INTO pembayaran VALUES(null, :tahun_ajaran, :nominal)")
                      ->bind("tahun_ajaran", $data['tahun_ajaran'])
                      ->bind("nominal", $data['nominal'])
@@ -50,9 +48,7 @@ class PembayaranModel extends Model {
 
     public function update($data)
     {
-        try {
-            $this->db->beginTransaction();
-
+        try {            
             $this->db->query("UPDATE pembayaran SET tahun_ajaran=:tahun_ajaran WHERE id=:id")
                      ->bind("tahun_ajaran", $data['tahun_ajaran'])                     
                      ->bind("id", $data['id'])
@@ -66,9 +62,7 @@ class PembayaranModel extends Model {
 
     public function destroy($data)
     {
-        try {
-            $this->db->beginTransaction();
-
+        try {            
             $this->db->query("DELETE FROM pembayaran WHERE id=:id")
                      ->bind("id", $data['id'])
                      ->execute();

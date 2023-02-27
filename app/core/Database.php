@@ -16,8 +16,9 @@ class Database {
             PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
         ];
 
-        try {
+        try {            
             $this->dbh = new PDO($dsn, $this->user, $this->pass, $options);
+            $this->dbh->beginTransaction();
         } catch (\Exception $e) {
             die($e->getMessage());
         }
@@ -62,12 +63,6 @@ class Database {
             $this->bind($key, $value);
         }        
         return $this;
-    }
-
-
-    public function beginTransaction()
-    {
-        $this->dbh->beginTransaction();
     }
 
     public function commit()

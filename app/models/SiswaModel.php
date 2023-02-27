@@ -10,7 +10,7 @@ class SiswaModel extends Model {
         return $this->db->query("SELECT siswa.*, kelas.nama AS kelas, pembayaran.tahun_ajaran AS tahun_ajaran FROM siswa
                                 INNER JOIN kelas ON kelas.id = siswa.kelas_id
                                 INNER JOIN pembayaran ON pembayaran.id = siswa.pembayaran_id
-                                ORDER BY pembayaran.id DESC")->all();
+                                ORDER BY siswa.id DESC")->all();
     }
 
     public function getLatestPengguna()
@@ -69,8 +69,7 @@ class SiswaModel extends Model {
     }
 
     public function store($data)
-    {          
-        $this->db->beginTransaction();            
+    {                              
         try {
             $this->storeAccount($data);
             $pengguna_id = $this->getLatestPengguna()['id'];
@@ -101,8 +100,7 @@ class SiswaModel extends Model {
     }
 
     public function update($data)
-    {
-        $this->db->beginTransaction();
+    {        
         try {
             $this->updateAccount($data);
             $this->db->query("UPDATE siswa SET nisn=:nisn, nis=:nis, nama=:nama, alamat=:alamat, telepon=:telepon, kelas_id=:kelas_id, pembayaran_id=:pembayaran_id WHERE id=:id")
@@ -124,8 +122,7 @@ class SiswaModel extends Model {
     }
 
     public function destroy($id)
-    {
-        $this->db->beginTransaction();
+    {        
         try {            
             $this->db->query("DELETE FROM siswa WHERE id=:id")
                      ->bind("id", $id)

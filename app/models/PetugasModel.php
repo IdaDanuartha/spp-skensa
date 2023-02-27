@@ -81,8 +81,7 @@ class PetugasModel extends Model {
 
     public function store($data)
     {           
-        try {
-            $this->db->beginTransaction();            
+        try {                        
             $this->storeAccount($data);
             $pengguna_id = $this->getLatestPengguna()['id'];
 
@@ -108,8 +107,7 @@ class PetugasModel extends Model {
     }
 
     public function update($data)
-    {
-        $this->db->beginTransaction();
+    {        
         try {
             $this->updateAccount($data);
             $this->db->query("UPDATE petugas SET nama=:nama WHERE id=:id")
@@ -125,8 +123,7 @@ class PetugasModel extends Model {
     }
 
     public function destroy($id)
-    {
-        $this->db->beginTransaction();
+    {        
         try {            
             $this->db->query("DELETE FROM petugas WHERE id=:id")
                      ->bind("id", $id)

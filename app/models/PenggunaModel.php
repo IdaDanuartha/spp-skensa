@@ -9,8 +9,8 @@ class PenggunaModel extends Model {
     public function findPenggunaByUsername($username)
     {
         return $this->db->query("SELECT * FROM pengguna WHERE username=:username")
-                ->bind("username", $username)
-                ->first();
+                        ->bind("username", $username)
+                        ->first();
     }
 
     public function findSiswaByPenggunaId($pengguna_id)
@@ -18,8 +18,8 @@ class PenggunaModel extends Model {
         return $this->db->query("SELECT siswa.*, pengguna.username, pengguna.role FROM siswa
                                 INNER JOIN pengguna ON pengguna.id = siswa.pengguna_id
                                 WHERE pengguna_id=:pengguna_id")
-                ->bind("pengguna_id", $pengguna_id)
-                ->first();
+                        ->bind("pengguna_id", $pengguna_id)
+                        ->first();
     }
 
     public function login($data)
