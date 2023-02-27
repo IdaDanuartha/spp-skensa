@@ -210,7 +210,7 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-body p-4">
-                <h5 class="font-weight-bold mb-4 text-center">Detail Transaksi Tahun Ini</h5>            
+                <h5 class="font-weight-bold mb-4 text-center">Transaksi Pembayaran SPP Tahun Ini</h5>            
                 <?php 
                     $bulan_dibayar = []; 
                     foreach($data['transaksi_siswa'] as $transaksi) {
