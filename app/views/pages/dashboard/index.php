@@ -205,7 +205,7 @@
 
 </div>
 
-<!-- Detail Kelas -->
+<!-- Detail Kelas --> 
 <div class="modal fade" id="detailTransaksiSiswaModal">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
