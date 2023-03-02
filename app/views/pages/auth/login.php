@@ -6,14 +6,14 @@
                 <h1 class="h4 text-gray-900 font-weight-bold mb-4">Selamat Datang Di Website SPP Skensa</h1>
             </div>
             <?php Flasher::flash() ?>
-            <form class="user" action="<?= route("auth/process") ?>" method="POST">
+            <form class="user" action="<?= route("auth/login") ?>" method="POST">
                 <div class="form-group">
                     <input type="text" required class="form-control form-control-user"
                         id="username" aria-describedby="username"
-                        placeholder="Enter username..." name="username" autofocus value="<?= isset($_POST['username']) ? $_POST['username'] : '' ?>">
+                        placeholder="Enter username..." name="username" autofocus value="<?= old('username') ?>">
                 </div>
                 <div class="form-group">
-                    <input type="password" required class="form-control form-control-user"
+                    <input type="password" class="form-control form-control-user"
                         id="password" placeholder="Enter password" name="password">
                 </div>
                 <div class="form-group">

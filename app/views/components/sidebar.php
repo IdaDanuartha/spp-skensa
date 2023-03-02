@@ -55,7 +55,7 @@
     <li class="nav-item <?= activeURL('/transaksi') ?>">
         <a class="nav-link" href="<?= route('transaksi') ?>">
             <i class="fas fa-fw fa-money-bill-alt"></i>
-            <span>Entri Transaksi</span></a>
+            <span>Transaksi</span></a>
     </li>
 <?php endif; ?>
 

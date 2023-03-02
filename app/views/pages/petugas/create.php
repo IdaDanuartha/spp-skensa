@@ -5,15 +5,15 @@
             <h6 class="m-0 font-weight-bold text-primary">Data Petugas</h6>
         </div>
         <div class="card-body">
-            <form action="<?= route('petugas/store') ?>" method="POST">
+            <form action="<?= route('petugas/create') ?>" method="POST">
                 <div class="row g-4">
                     <div class="mb-3 col-lg-6 col-12">
                         <label for="username" id="username">Username</label>
-                        <input type="text" class="form-control" placeholder="Input username petugas" name="username" required>
+                        <input type="text" class="form-control" placeholder="Input username petugas" name="username" required value="<?= old('username') ?>">
                     </div>
                     <div class="mb-3 col-lg-6 col-12">
                         <label for="nama" id="nama">Nama Petugas</label>
-                        <input type="text" class="form-control" name="nama" placeholder="Input nama petugas" required>
+                        <input type="text" class="form-control" name="nama" placeholder="Input nama petugas" required value="<?= old('nama') ?>">
                     </div>
                 </div>
                 <div class="row g-4">

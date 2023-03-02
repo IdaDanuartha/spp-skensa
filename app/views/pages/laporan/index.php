@@ -4,13 +4,13 @@
         <div class="col-xl-4 col-12">
             <div class="mb-3">
                 <label for="">Tanggal mulai</label>
-                <input type="date" name="start_date" class="form-control">
+                <input type="date" name="start_date" class="form-control" value="<?= old("start_date") ?>">
             </div>        
         </div>
         <div class="col-xl-4 col-12">
             <div class="mb-3">
                 <label for="">Tanggal selesai</label>
-                <input type="date" name="end_date" class="form-control">
+                <input type="date" name="end_date" class="form-control" value="<?= old("end_date") ?>">
             </div>
         </div>
         <div class="col-xl-4 col-12">
@@ -22,7 +22,7 @@
     <?php if(count($data['transaksi']) > 0) : ?>
         <div class="card shadow mb-4">
             <div class="card-header py-3 d-flex justify-content-between align-items-center">
-                <h6 class="m-0 font-weight-bold text-primary">Histori Transaksi Pembayaran</h6>
+                <h6 class="m-0 font-weight-bold text-primary">Laporan Pembayaran SPP</h6>
                 <form action="<?= route('laporan/export') ?>" method="post">
                     <input type="hidden" name="start_date" value="<?= $_POST['start_date'] ?>">
                     <input type="hidden" name="end_date" value="<?= $_POST['end_date'] ?>">

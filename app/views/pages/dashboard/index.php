@@ -7,7 +7,7 @@
             <a href="<?= route('laporan') ?>" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
                 class="fas fa-file-export fa-sm text-white-50"></i> Generate Laporan</a>
         <?php else : ?>
-            <button class="btn btn-primary" data-toggle="modal" data-target="#detailTransaksiSiswaModal">Detail Transaksi</button>
+            <button class="btn btn-primary" data-toggle="modal" data-target="#detailTransaksiSiswaModal">Transaksi Saya</button>
         <?php endif; ?>
     </div>
 
