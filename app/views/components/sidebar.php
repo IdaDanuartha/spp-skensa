@@ -63,7 +63,7 @@
 <li class="nav-item <?= activeURL('/transaksi/histori') ?>">
     <a class="nav-link" href="<?= route('transaksi/histori') ?>">
         <i class="fas fa-fw fa-file-archive"></i>
-        <span>Histori Pembayaran</span></a>
+        <span>Histori Pembayaran</span></a> 
 </li>
 
 <?php if($_SESSION['user']['role'] === 'admin') : ?>
