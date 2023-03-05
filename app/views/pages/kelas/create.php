@@ -16,7 +16,7 @@
                 </div>
                 <div class="d-flex justify-content-end">
                     <button type="submit" class="btn btn-primary">Tambah</button>
-                </div>
+                </div> 
             </form>
         </div>
     </div>
