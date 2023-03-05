@@ -55,7 +55,7 @@
     <li class="nav-item <?= activeURL('/transaksi') ?>">
         <a class="nav-link" href="<?= route('transaksi') ?>">
             <i class="fas fa-fw fa-money-bill-alt"></i>
-            <span>Entri Transaksi</span></a>
+            <span>Transaksi</span></a>
     </li>
 <?php endif; ?>
 
@@ -63,7 +63,7 @@
 <li class="nav-item <?= activeURL('/transaksi/histori') ?>">
     <a class="nav-link" href="<?= route('transaksi/histori') ?>">
         <i class="fas fa-fw fa-file-archive"></i>
-        <span>Histori Pembayaran</span></a>
+        <span>Histori Pembayaran</span></a> 
 </li>
 
 <?php if($_SESSION['user']['role'] === 'admin') : ?>

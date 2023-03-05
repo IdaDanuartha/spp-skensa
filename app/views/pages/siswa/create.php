@@ -5,37 +5,41 @@
             <h6 class="m-0 font-weight-bold text-primary">Data Siswa</h6>
         </div>
         <div class="card-body">
-            <form action="<?= route('siswa/store') ?>" method="POST">
+            <form action="<?= route('siswa/create') ?>" method="POST">
                 <div class="row g-4">
                     <div class="mb-3 col-lg-6 col-12">
                         <label for="nisn" id="nisn">NISN</label>
-                        <input type="text" class="form-control" placeholder="Input nisn siswa" name="nisn" required>
+                        <input type="text" class="form-control" placeholder="Input nisn siswa" name="nisn" required value="<?= old('nisn') ?>">
                     </div>
                     <div class="mb-3 col-lg-6 col-12">
                         <label for="nis" id="nis">NIS</label>
-                        <input type="text" class="form-control" name="nis" placeholder="Input nis siswa" required>
+                        <input type="text" class="form-control" name="nis" placeholder="Input nis siswa" required value="<?= old('nis') ?>">
                     </div>
                 </div>
                 <div class="row g-4">
                     <div class="mb-3 col-lg-6 col-12">
                         <label for="nama" id="nama">Nama Siswa</label>
-                        <input type="text" class="form-control" name="nama" placeholder="Input nama siswa" required>
+                        <input type="text" class="form-control" name="nama" placeholder="Input nama siswa" required value="<?= old('nama') ?>">
                     </div>
                     <div class="mb-3 col-lg-6 col-12">
                         <label for="alamat" id="alamat">Alamat</label>
-                        <input type="text" class="form-control" name="alamat" placeholder="Input alamat siswa" required>
+                        <input type="text" class="form-control" name="alamat" placeholder="Input alamat siswa" required value="<?= old('alamat') ?>">
                     </div>
                 </div>
                 <div class="row g-4">
                     <div class="mb-3 col-lg-6 col-12">
                         <label for="telepon" id="telepon">No. Telepon</label>
-                        <input type="number" class="form-control" name="telepon" placeholder="Input nomor telepon siswa" required>
+                        <input type="number" class="form-control" name="telepon" placeholder="Input nomor telepon siswa" required value="<?= old('telepon') ?>">
                     </div>
                     <div class="mb-3 col-lg-6 col-12">
                         <label for="kelas_id" id="kelas_id">Pilih Kelas</label>
                         <select name="kelas_id" id="kelas_id" class="form-control">
                             <?php foreach($data['kelas'] as $kelas) : ?>
-                                <option value="<?= $kelas['id'] ?>"><?= $kelas['nama'] ?></option>
+                                <?php if($kelas['id'] == old('kelas_id')) : ?>
+                                    <option value="<?= $kelas['id'] ?>" selected><?= $kelas['nama'] ?></option>
+                                <?php else : ?>
+                                    <option value="<?= $kelas['id'] ?>"><?= $kelas['nama'] ?></option>
+                                <?php endif; ?>
                             <?php endforeach; ?>
                         </select>
                     </div>
@@ -45,7 +49,11 @@
                         <label for="pembayaran_id" id="pembayaran_id">Pilih Tahun Ajaran</label>
                         <select name="pembayaran_id" id="pembayaran_id" class="form-control">
                             <?php foreach($data['pembayaran'] as $pembayaran) : ?>
-                                <option value="<?= $pembayaran['id'] ?>"><?= $pembayaran['tahun_ajaran'] ?></option>
+                                <?php if($pembayaran['id'] == old('pembayaran_id')) : ?>
+                                    <option value="<?= $pembayaran['id'] ?>" selected><?= $pembayaran['tahun_ajaran'] ?></option>
+                                <?php else : ?>
+                                    <option value="<?= $pembayaran['id'] ?>"><?= $pembayaran['tahun_ajaran'] ?></option>
+                                <?php endif; ?>
                             <?php endforeach; ?>
                         </select>
                     </div>

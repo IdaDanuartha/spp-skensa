@@ -8,7 +8,8 @@ class Laporan extends Controller {
 
     public function index()
     {    
-        $transaksi = [];                
+        $transaksi = [];
+        
         if(isset($_POST['filter_laporan'])) {
             $rows = $this->model("TransaksiModel")->getTransaksiByDate($_POST['start_date'], $_POST['end_date']);
 
@@ -22,8 +23,10 @@ class Laporan extends Controller {
         $data = [
             "title" => "Laporan Transaksi",
             "view" => "pages/laporan/index",
-            "transaksi" => $transaksi
+            "transaksi" => $transaksi,
+            "old" => $_POST
         ];
+
 
         return $this->view("layouts/dashboard", $data);
     }  

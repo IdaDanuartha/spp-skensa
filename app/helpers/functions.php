@@ -6,7 +6,8 @@ function dd($data, $arrays = []) {
 }
 
 // Fungsi redirect adalah fungsi untuk melakukan redirecting ke halaman tertentu
-function redirect($path) {
+function redirect($path, $flash = []) {
+    if(!empty($flash)) Flasher::setFlash($flash[0], $flash[1]);
     header('Location: ' . BASE_URL . "/$path"); exit;
 }
 
@@ -38,4 +39,9 @@ function asset($asset) {
 // Fungsi rupiah adalah fungsi untuk melakukan format angka ke format rupiah
 function rupiah($num) {
     return 'Rp. ' . number_format($num, 0, ',', '.');
+}
+
+function old($value)
+{
+    return isset($_POST[$value]) ? $_POST[$value] : '';
 }

@@ -22,25 +22,23 @@ class Pembayaran extends Controller {
         $data = [
             "title" => "Tambah Pembayaran",
             "view" => "pages/pembayaran/create",
+            "old" => $_POST
         ];
-       
+
+        if($_POST) $this->store($_POST);
+
         return $this->view('layouts/dashboard', $data);
     }
 
     public function store()
-    {
-        if(!$_POST) return redirect('pembayaran');
-        
+    {        
         if($this->model('PembayaranModel')->findPembayaranByTahunAjaran($_POST['tahun_ajaran'])) {
             Flasher::setFlash("danger", 'Pembayaran <strong>"' . $_POST['tahun_ajaran'] . '"</strong> sudah ada');
-            redirect("pembayaran/create");
         } else {
-            if($this->model('PembayaranModel')->store($_POST) > 0) {
-                Flasher::setFlash("success", "Data pembayaran berhasil ditambahkan");
-                redirect("pembayaran");
+            if($this->model('PembayaranModel')->store($_POST) > 0) {                
+                redirect("pembayaran", ["success", "Data pembayaran berhasil ditambahkan"]);
             } else {
                 Flasher::setFlash("danger", "Data pembayaran gagal ditambahkan");
-                redirect("pembayaran/create");
             }
         }      
     }

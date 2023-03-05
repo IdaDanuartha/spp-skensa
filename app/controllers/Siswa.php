@@ -24,39 +24,29 @@ class Siswa extends Controller {
             "view" => "pages/siswa/create",
             "kelas" => $this->model('KelasModel')->getAllKelas(),
             "pembayaran" => $this->model('PembayaranModel')->getAllPembayaran(),
+            "old" => $_POST
         ];
+
+        if($_POST) $this->store($_POST);
        
         return $this->view('layouts/dashboard', $data);
     }
 
     public function store()
-    {
-        if(!$_POST) return redirect('siswa');
-        
+    {        
         if($this->model('SiswaModel')->findSiswaByColumn($_POST['nisn'])) {
             Flasher::setFlash("danger", 'Siswa dengan NISN <strong>"' . $_POST['nisn'] . '"</strong> sudah ada');
-            redirect("siswa/create");
         } else if($this->model('SiswaModel')->findSiswaByColumn($_POST['nis'])) {
             Flasher::setFlash("danger", 'Siswa dengan NIS <strong>"' . $_POST['nis'] . '"</strong> sudah ada');
-            redirect("siswa/create");
         } else if($this->model('SiswaModel')->findSiswaByColumn($_POST['nama'])) {
             Flasher::setFlash("danger", 'Siswa dengan nama <strong>"' . $_POST['nama'] . '"</strong> sudah ada');
-            redirect("siswa/create");
         } else {
-            if($this->model('SiswaModel')->store($_POST) > 0) {
-                Flasher::setFlash("success", "Data siswa berhasil ditambahkan");
-                redirect("siswa");
+            if($this->model('SiswaModel')->store($_POST) > 0) {                
+                redirect("siswa", ["success", "Data siswa berhasil ditambahkan"]);
             } else {
                 Flasher::setFlash("danger", "Data siswa gagal ditambahkan");
-                redirect("siswa/create");
             }
         }      
-    }
-
-    public function detail($id)
-    {    
-       
-        echo json_encode($this->model('SiswaModel')->findSiswa($id));
     }
 
     public function edit($id)

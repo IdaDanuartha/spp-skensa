@@ -22,28 +22,25 @@ class Petugas extends Controller {
         $data = [
             "title" => "Tambah Petugas",
             "view" => "pages/petugas/create",
+            "old" => $_POST
         ];
+
+        if($_POST) $this->store($_POST);
        
         return $this->view('layouts/dashboard', $data);
     }
 
     public function store()
-    {
-        if(!$_POST) return redirect('petugas');
-        
+    {        
         if($this->model('PetugasModel')->findAccountPetugasByUsername($_POST['username'])) {
             Flasher::setFlash("danger", 'Petugas dengan username <strong>"' . $_POST['username'] . '"</strong> sudah ada');
-            redirect("petugas/create");
         } else if($this->model('PetugasModel')->findPetugasByNama($_POST['nama'])) {
             Flasher::setFlash("danger", 'Petugas dengan nama <strong>"' . $_POST['nama'] . '"</strong> sudah ada');
-            redirect("petugas/create");
         } else {
-            if($this->model('PetugasModel')->store($_POST) > 0) {
-                Flasher::setFlash("success", "Data petugas berhasil ditambahkan");
-                redirect("petugas");
+            if($this->model('PetugasModel')->store($_POST) > 0) {                
+                redirect("petugas", ["success", "Data petugas berhasil ditambahkan"]);
             } else {
                 Flasher::setFlash("danger", "Data petugas gagal ditambahkan");
-                redirect("petugas/create");
             }
         }      
     }
